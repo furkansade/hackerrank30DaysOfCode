@@ -5,11 +5,14 @@ import (
 	"sort"
 )
 
-func Solve(arr []int) {
-	sort.Ints(arr)
-	// fmt.Println(arr)
-	n := len(arr)
-	fmt.Println(arr[n-1] - arr[0])
+type Difference struct {
+	elements []int
+}
+
+func (d *Difference) computeDifference() {
+	sort.Ints(d.elements)
+	n := len(d.elements)
+	fmt.Println(d.elements[n-1] - d.elements[0])
 }
 
 func main() {
@@ -20,10 +23,9 @@ func main() {
 	for i := range arr {
 		_, err := fmt.Scan(&arr[i])
 		if err != nil {
-			fmt.Println(err)
+			break
 		}
 	}
-
-	Solve(arr)
-
+	difference := &Difference{elements: arr}
+	difference.computeDifference()
 }
